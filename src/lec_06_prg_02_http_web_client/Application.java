@@ -15,18 +15,18 @@ public class Application {
         try {
             out.println("## HTTP client started.");
 
-            out.println("## GET request for http://localhost:8080/temp/");
-            get("http://localhost:8080/temp/");
+            out.println("## GET request for http://0.0.0.0:8080/temp/");
+            get("http://0.0.0.0:8080/temp/");
 
-            out.println("## GET request for http://localhost:8080/?var1=9&var2=9");
-            get("http://localhost:8080/?var1=9&var2=9");
+            out.println("## GET request for http://0.0.0.0:8080/?var1=9&var2=9");
+            get("http://0.0.0.0:8080/?var1=9&var2=9");
 
             Map<String, String> requestBody = new HashMap<>();
             requestBody.put("var1", "9");
             requestBody.put("var2", "9");
 
-            out.println("## POST request for http://localhost:8080/ with var1 is 9 and var2 is 9");
-            post("http://localhost:8080/", requestBody);
+            out.println("## POST request for http://0.0.0.0:8080/ with var1 is 9 and var2 is 9");
+            post("http://0.0.0.0:8080/", requestBody);
 
             out.println("## HTTP client completed.");
         } catch(Exception e) { e.printStackTrace(); }
