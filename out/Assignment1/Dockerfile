@@ -1,4 +1,7 @@
 FROM openjdk:8-jre-alpine
+
+MAINTAINER Untaini hgsu0806@khu.ac.kr
+
 COPY . /app
 
 EXPOSE 8080
