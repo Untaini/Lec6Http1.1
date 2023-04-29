@@ -9,26 +9,26 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Application {
-    private static final PrintStream out = System.out;
-
+    private static final PrintStream OUT = System.out;
+    private static final String HOST = "server";
     public static void main(String[] args) {
         try {
-            out.println("## HTTP client started.");
+            OUT.println("## HTTP client started.");
 
-            out.println("## GET request for http://0.0.0.0:8080/temp/");
-            get("http://0.0.0.0:8080/temp/");
+            OUT.printf("## GET request for http://%s:8080/temp/\n", HOST);
+            get(String.format("http://%s:8080/temp/", HOST));
 
-            out.println("## GET request for http://0.0.0.0:8080/?var1=9&var2=9");
-            get("http://0.0.0.0:8080/?var1=9&var2=9");
+            OUT.printf("## GET request for http://%s:8080/?var1=9&var2=9\n", HOST);
+            get(String.format("http://%s:8080/?var1=9&var2=9", HOST));
 
             Map<String, String> requestBody = new HashMap<>();
             requestBody.put("var1", "9");
             requestBody.put("var2", "9");
 
-            out.println("## POST request for http://0.0.0.0:8080/ with var1 is 9 and var2 is 9");
-            post("http://0.0.0.0:8080/", requestBody);
+            OUT.printf("## POST request for http://%s:8080/ with var1 is 9 and var2 is 9\n", HOST);
+            post(String.format("http://%s:8080/", HOST), requestBody);
 
-            out.println("## HTTP client completed.");
+            OUT.println("## HTTP client completed.");
         } catch(Exception e) { e.printStackTrace(); }
     }
 
@@ -38,10 +38,10 @@ public class Application {
 
         con.setRequestMethod("GET");
 
-        out.println("## GET response [start]");
+        OUT.println("## GET response [start]");
         String responseContext = getResponseBodyContext(con);
-        out.println(responseContext);
-        out.println("## GET response [end]");
+        OUT.println(responseContext);
+        OUT.println("## GET response [end]");
 
         con.disconnect();
 
@@ -65,10 +65,10 @@ public class Application {
         writer.write(requestBodyString);
         writer.close();
 
-        out.println("## POST response [start]");
+        OUT.println("## POST response [start]");
         String responseContext = getResponseBodyContext(con);
-        out.println(responseContext);
-        out.println("## POST response [end]");
+        OUT.println(responseContext);
+        OUT.println("## POST response [end]");
 
         con.disconnect();
 

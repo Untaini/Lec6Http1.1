@@ -8,7 +8,7 @@ import java.net.InetSocketAddress;
 public class Application {
 
     private static final int PORT = 8080;
-    private static final String HOST = "0.0.0.0";
+    private static final String HOST = "server";
 
     public static void main(String[] args) {
         try {
