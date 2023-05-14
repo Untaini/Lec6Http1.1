@@ -3,51 +3,13 @@ package lec_06_prg_03_json_example;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-public class Application {
-    static final String superHeroesSource = "{" +
-            "  \"squadName\": \"Super hero squad\"," +
-            "  \"homeTown\": \"Metro City\"," +
-            "  \"formed\": 2016," +
-            "  \"secretBase\": \"Super tower\"," +
-            "  \"active\": True," +
-            "  \"members\": [" +
-            "    {" +
-            "      \"name\": \"Molecule Man\"," +
-            "      \"age\": 29," +
-            "      \"secretIdentity\": \"Dan Jukes\"," +
-            "      \"powers\": [" +
-            "        \"Radiation resistance\"," +
-            "        \"Turning tiny\"," +
-            "        \"Radiation blast\"" +
-            "      ]" +
-            "    }," +
-            "    {" +
-            "      \"name\": \"Madame Uppercut\"," +
-            "      \"age\": 39," +
-            "      \"secretIdentity\": \"Jane Wilson\"," +
-            "      \"powers\": [" +
-            "        \"Million tonne punch\"," +
-            "        \"Damage resistance\"," +
-            "        \"Superhuman reflexes\"" +
-            "      ]" +
-            "    }," +
-            "    {" +
-            "      \"name\": \"Eternal Flame\"," +
-            "      \"age\": 1000000," +
-            "      \"secretIdentity\": \"Unknown\"," +
-            "      \"powers\": [" +
-            "        \"Immortality\"," +
-            "        \"Heat Immunity\"," +
-            "        \"Inferno\"," +
-            "        \"Teleportation\"," +
-            "        \"Interdimensional travel\"" +
-            "      ]" +
-            "    }" +
-            "  ]" +
-            "}";
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
-    public static void main(String[] args) {
-        JsonElement superHeroes = JsonParser.parseString(superHeroesSource);
+public class Application {
+
+    public static void main(String[] args) throws FileNotFoundException {
+        JsonElement superHeroes = JsonParser.parseReader(new FileReader("./src/lec_06_prg_03_json_example/lec-06-prg-03-json-example.json"));
 
         System.out.println(superHeroes.getAsJsonObject().get("homeTown").getAsString());
     }
