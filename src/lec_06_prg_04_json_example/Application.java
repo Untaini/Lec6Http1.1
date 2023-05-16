@@ -56,7 +56,7 @@ public class Application {
         System.out.println(superHeroes.get("active"));
         System.out.println(((List<?>)((Map<?, ?>)((List<?>)superHeroes.get("members")).get(1)).get("powers")).get(2));
 
-        FileWriter fw = new FileWriter("./src/lec_06_prg_04_json_example/lec-06-prg-04-json-example.json");
+        FileWriter fw = new FileWriter("lec-06-prg-04-json-example.json");
         new GsonBuilder()
                 .setPrettyPrinting()
                 .create()
