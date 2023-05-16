@@ -27,7 +27,7 @@ public class HttpMembershipHandler implements com.sun.net.httpserver.HttpHandler
 
         String id = getIdFromPath(path);
         JsonElement reqBody = parseParametersToJson(exchange.getRequestBody());
-        JsonElement repBody;
+        JsonElement resBody;
 
         if (id == null) {
             method = "BAD REQUEST";
@@ -35,16 +35,16 @@ public class HttpMembershipHandler implements com.sun.net.httpserver.HttpHandler
 
         switch (method) {
             case "GET":
-                repBody = read(id);
+                resBody = read(id);
                 break;
             case "POST":
-                repBody = create(id, reqBody);
+                resBody = create(id, reqBody);
                 break;
             case "PUT":
-                repBody = update(id, reqBody);
+                resBody = update(id, reqBody);
                 break;
             case "DELETE":
-                repBody = delete(id);
+                resBody = delete(id);
                 break;
             default:
                 printManager.printLog(clientHost, requestLine, 400);
@@ -52,10 +52,10 @@ public class HttpMembershipHandler implements com.sun.net.httpserver.HttpHandler
                 return;
         }
 
-        exchange.sendResponseHeaders(200, repBody.toString().length());
+        exchange.sendResponseHeaders(200, resBody.toString().length());
 
         OutputStreamWriter writer = new OutputStreamWriter(exchange.getResponseBody());
-        gson.toJson(repBody, writer);
+        gson.toJson(resBody, writer);
         writer.flush();
         writer.close();
 
@@ -69,7 +69,7 @@ public class HttpMembershipHandler implements com.sun.net.httpserver.HttpHandler
             return null;
         }
 
-        return pathList.get(1);
+        return pathList.get(2);
     }
 
     private String getParamFromReqBody(InputStream in) throws IOException {
